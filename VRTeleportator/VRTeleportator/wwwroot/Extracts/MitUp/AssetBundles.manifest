@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 4273024001
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: primitiyes
+      Dependencies: {}
+    Info_1:
+      Name: model
+      Dependencies: {}

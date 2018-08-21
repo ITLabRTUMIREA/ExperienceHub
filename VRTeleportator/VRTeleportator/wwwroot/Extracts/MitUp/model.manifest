@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 1825012973
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5208a27b6fc97a88d16909c5001e762b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bc193d49e7d16f71ac778acf3c7bfc27
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/node_id29.prefab
+- Assets/chair2.fbm/5.png
+- Assets/chair2.fbm/7.png
+- Assets/chair2.fbx
+Dependencies: []
