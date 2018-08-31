@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ExperenceHubApp"
+             x:Class="ExperenceHubApp.MainPage"
+             MasterBehavior="Popover">
+
+    <MasterDetailPage.Master>
+        <ContentPage x:Name="ContentPage_master"
+                     Title="Menu"
+                     BackgroundColor="Orange"
+                     Padding="10, 10, 10, 10">
+            <ContentPage.Content>
+                <StackLayout Margin="5, 10, 5, 0" Spacing="20">
+                    <Label Text="ExperenseHub" Font="32" HorizontalOptions="Start"/>
+                    <StackLayout>
+                        <Button Text="My Lessons" Font="18" BackgroundColor="Gray"/>
+                        <Button Text="Messeges" Font="18" BackgroundColor="Gray"/>
+                        <Button Text="Shop" Font="18" BackgroundColor="Gray"/>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="EndAndExpand">
+                        <Button Text="Account" Font="18" BackgroundColor="Gray"/>
+                        <Button Text="Settings" Font="18" BackgroundColor="Gray"/>
+                    </StackLayout>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+        
+    <MasterDetailPage.Detail>
+        <ContentPage>
+            <Label Text="Content of DetailPage"/>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+    
+</MasterDetailPage>

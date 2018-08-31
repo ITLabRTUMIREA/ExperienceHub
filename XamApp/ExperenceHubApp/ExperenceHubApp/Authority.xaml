@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExperenceHubApp.Authority"
+             BackgroundColor="Gray">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill" 
+                     VerticalOptions="CenterAndExpand" 
+                     Margin="400, 300, 400, 400" 
+                     Spacing="8">
+            <StackLayout>
+                <Entry Placeholder="Email"/>
+                <Entry Placeholder="Password"/>
+                <!--<controls:CheckBox DefaultText="Stay in system" x:Name="SaveCheck"/>-->
+            </StackLayout>
+            <Button Text="Sign in" BackgroundColor="Orange" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Sign up" BackgroundColor="Orange" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
