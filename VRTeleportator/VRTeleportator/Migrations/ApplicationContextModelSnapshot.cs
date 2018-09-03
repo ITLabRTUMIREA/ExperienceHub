@@ -10,7 +10,7 @@ using VRTeleportator;
 
 namespace VRTeleportator.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
+    [DbContext(typeof(AppDataBase))]
     partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

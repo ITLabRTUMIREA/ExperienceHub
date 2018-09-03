@@ -10,7 +10,7 @@ using VRTeleportator;
 
 namespace VRTeleportator.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
+    [DbContext(typeof(AppDataBase))]
     [Migration("20180223161818_files")]
     partial class files
     {
