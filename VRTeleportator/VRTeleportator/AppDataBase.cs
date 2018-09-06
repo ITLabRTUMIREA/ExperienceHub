@@ -15,7 +15,7 @@ namespace VRTeleportator
         {
         }
         public DbSet<FileModel> Files { get; set; }
-        public DbSet<User> SystemUsers { get; set; }
+        public DbSet<User> UserAccounts { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
     }
 }

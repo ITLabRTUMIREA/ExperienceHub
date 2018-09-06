@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Text;
 using VRTeleportator.Models;
+using VRTeleportator.Services.Interfaces;
 
 namespace VRTeleportator
 {
@@ -24,38 +26,60 @@ namespace VRTeleportator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ISecretKey, SecretKeyService>();
             services.AddMvc();
-
+#if DEBUG
+            services.AddDbContext<AppDataBase>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("LocalDB"),
+                b => b.MigrationsAssembly("VRTeleportator")));
+#else
             services.AddDbContext<AppDataBase>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("VRTeleportator"),
                 b => b.MigrationsAssembly("VRTeleportator")));
-
-            services.AddIdentity<User, IdentityRole<Guid>>()
+#endif
+            services.AddIdentity<User, IdentityRole<Guid>>(config =>
+            {
+                config.Password.RequireDigit = false;
+                config.Password.RequireLowercase = false;
+                config.Password.RequireUppercase = false;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequiredLength = 6;
+            })
                 .AddEntityFrameworkStores<AppDataBase>()
                 .AddDefaultTokenProviders();
 
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetSection("JwtOptions")["Key"]));
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    .AddJwtBearer(options =>
-                    {
-                        options.RequireHttpsMetadata = false;
-                        options.TokenValidationParameters = new TokenValidationParameters
-                        {
-                            ValidateIssuer = true,
-                            ValidIssuer = Configuration.GetSection("JwtOptions")["Issuer"],
+            //services.Configure<SecretKeyService>(config =>
+            //{
+            //    config.SecretKey = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            //});
 
-                            ValidateAudience = true,
-                            ValidAudience = Configuration.GetSection("JwtOptions")["Audience"],
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+              .AddJwtBearer(options =>
+              {
+                  options.RequireHttpsMetadata = false;
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuer = true,
+                      ValidIssuer = Configuration.GetSection("JwtOptions")["Issuer"],
 
-                            ValidateLifetime = true,
+                      ValidateAudience = true,
+                      ValidAudience = Configuration.GetSection("JwtOptions")["Audience"],
 
-                            IssuerSigningKey = key,
+                      ValidateLifetime = true,
 
-                            ValidateIssuerSigningKey = true
-                            
-                        };
-                    });
+                      IssuerSigningKey = key,
+
+                      ValidateIssuerSigningKey = true
+                  };
+              });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

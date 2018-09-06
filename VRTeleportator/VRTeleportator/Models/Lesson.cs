@@ -10,6 +10,7 @@ namespace VRTeleportator.Models
     {
         public Guid LessonId { get; set; }
         public Guid UserId { get; set; }
+        //public List<User> PurchasedUsers { get; set; }
         public string Name { get; set; }
         public string Price { get; set; }
         public string Description { get; set; }

@@ -42,3 +42,14 @@ C:\Users\RealityShift8\Desktop\ExpirienceHub-dev_Backend\VRTeleportator\VRTelepo
 C:\Users\RealityShift8\Desktop\ExpirienceHub-dev_Backend\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.AssemblyInfo.cs
 C:\Users\RealityShift8\Desktop\ExpirienceHub-dev_Backend\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.dll
 C:\Users\RealityShift8\Desktop\ExpirienceHub-dev_Backend\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.pdb
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.dll
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\obj\Debug\netcoreapp2.0\VRTeleportator.pdb
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\bin\Debug\netcoreapp2.0\VRTeleportator.deps.json
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\bin\Debug\netcoreapp2.0\VRTeleportator.runtimeconfig.json
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\bin\Debug\netcoreapp2.0\VRTeleportator.runtimeconfig.dev.json
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\bin\Debug\netcoreapp2.0\VRTeleportator.dll
+C:\Users\User\Documents\GitHub\ExpirienceHub\VRTeleportator\VRTeleportator\bin\Debug\netcoreapp2.0\VRTeleportator.pdb
