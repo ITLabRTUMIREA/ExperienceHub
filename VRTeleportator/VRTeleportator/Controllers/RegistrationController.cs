@@ -32,11 +32,12 @@ namespace VRTeleportator.Controllers
                     UserName = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Email = model.Email
+                    Email = model.Email,
+                    Wallet = default
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
             }
-            return Ok("Registration is done");
+            return Ok();
         }
     }
 }

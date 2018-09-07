@@ -10,6 +10,7 @@ namespace VRTeleportator.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public List<Lesson> Lessons { get; set; }
+        public float Wallet { get; set; }
+        public List<UserLessons> UserLessons { get; set; }
     }
 }

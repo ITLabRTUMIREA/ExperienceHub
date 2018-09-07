@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using VRTeleportator.Models;
 using VRTeleportator.Services.Interfaces;
 using VRTeleportator.ViewModels;
@@ -37,7 +38,7 @@ namespace VRTeleportator.Controllers
         [HttpPost]
         public async Task<IActionResult> Authorize([FromBody]LoginViewModel model)
         {
-            var user = await userManager.FindByEmailAsync(model.Email);
+            var user = await userManager.FindByEmailAsync(model.Login);
             if (await userManager.CheckPasswordAsync(user, model.Password))
             {
                 var now = DateTime.UtcNow;
@@ -51,13 +52,24 @@ namespace VRTeleportator.Controllers
                     );
 
                 var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-                return Json(encodedJwt);
+                return Json(new UserViewModel
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Token = encodedJwt,
+                    Lessons = user.UserLessons
+                });
             }
             return BadRequest();
         }
+
+
+
         private ClaimsIdentity GetIdentity(LoginViewModel user)
         {
-            var result = dbContext.UserAccounts.FirstOrDefault(u => u.Email == user.Email);
+            var result = dbContext.UserAccounts.FirstOrDefault(u => u.Email == user.Login);
             if (result != null)
             {
                 var claims = new List<Claim>

@@ -144,6 +144,8 @@ namespace VRTeleportator.Migrations
                     b.Property<Guid>("LessonId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Creator");
+
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
@@ -152,17 +154,13 @@ namespace VRTeleportator.Migrations
 
                     b.Property<byte[]>("Picture");
 
-                    b.Property<string>("Price");
+                    b.Property<float>("Price");
 
                     b.Property<DateTime>("PurchaseDate");
 
                     b.Property<DateTime>("ReleaseDate");
 
-                    b.Property<Guid>("UserId");
-
                     b.HasKey("LessonId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Lessons");
                 });
@@ -209,6 +207,8 @@ namespace VRTeleportator.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
+                    b.Property<float>("Wallet");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -220,6 +220,24 @@ namespace VRTeleportator.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("VRTeleportator.Models.UserLessons", b =>
+                {
+                    b.Property<Guid>("UserLessonsId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("LessonId");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("UserLessonsId");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserLessons");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -267,10 +285,15 @@ namespace VRTeleportator.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("VRTeleportator.Models.Lesson", b =>
+            modelBuilder.Entity("VRTeleportator.Models.UserLessons", b =>
                 {
-                    b.HasOne("VRTeleportator.Models.User")
-                        .WithMany("Lessons")
+                    b.HasOne("VRTeleportator.Models.Lesson", "Lesson")
+                        .WithMany("UserLessons")
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("VRTeleportator.Models.User", "User")
+                        .WithMany("UserLessons")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
