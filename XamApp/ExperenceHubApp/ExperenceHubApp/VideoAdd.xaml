@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExperenceHubApp.VideoAdd"
+             Title="Add your video"
+             BackgroundColor="Gray"
+             Padding="50,50,50,50">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid ColumnSpacing="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" Spacing="15">
+                    <Entry Placeholder="Name" x:Name="Name"/>
+                    <Entry Placeholder="Price" x:Name="Price"/>
+                    <Editor Text="Description" AutoSize="TextChanges" MaxLength="1000" x:Name="Description"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Start">
+                        <Button Text="Record Video" BackgroundColor="Orange" Clicked="Record_Clicked" HorizontalOptions="FillAndExpand"/>
+                        <Button Text="Browse File" BackgroundColor="Orange" Clicked="Browse_Clicked" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                <Button Text="Add" BackgroundColor="Orange" Clicked="Add_Clicked" FontSize="Small"/>
+                <Button Text="Cancel" BackgroundColor="Orange" Clicked="Cancel_Clicked" FontSize="Small" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

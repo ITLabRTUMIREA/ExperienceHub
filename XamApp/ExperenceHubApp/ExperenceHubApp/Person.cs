@@ -1,16 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace ExperenceHubApp
 {
-    class Person
+    public class Person
     {
-        private string first_name;
-        private string last_name;
-        private float wallet;
-        List<string> LessonID;
+        public string firstname;
+        public string lastname;
+        public float wallet;
+        public List<Lesson> Lessons;
+        public string login;
+        public string email;
+        public string password;
+        public string token;
+        public Guid id;
 
-
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            if (Lessons == null)
+            {
+                Lessons = new List<Lesson>();
+            }
+        }
     }
 }

@@ -7,24 +7,13 @@ namespace ExperenceHubApp
 {
 	public partial class App : Application
 	{
-        private static FileService _fileHandler;
-        public static FileService FileHandler
-        {
-            get
-            {
-                if (_fileHandler == null)
-                {
-                    _fileHandler = new FileService();
-                }
-
-                return _fileHandler;
-            }
-        }
         public App ()
 		{
 			InitializeComponent();
 
 			MainPage = new MainPage();
+
+            Application.Current.Properties["URL"] = "http://5d7f0dcd.ngrok.io";
 		}
 
 		protected override void OnStart ()

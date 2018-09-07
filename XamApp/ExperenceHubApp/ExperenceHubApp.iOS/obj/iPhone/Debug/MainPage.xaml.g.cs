@@ -13,9 +13,11 @@
 namespace ExperenceHubApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\Projects\\ExpirienceHub\\Rep_Lab\\App\\ExperenceHubApp\\ExperenceHubApp\\MainPage.xa" +
-        "ml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\Projects\\ExpirienceHub\\XamApp\\ExperenceHubApp\\ExperenceHubApp\\MainPage.xaml")]
     public partial class MainPage : global::Xamarin.Forms.MasterDetailPage {
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.MasterDetailPage _MasterDetailPage;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.ContentPage ContentPage_master;
@@ -23,6 +25,7 @@ namespace ExperenceHubApp {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MainPage));
+            _MasterDetailPage = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.MasterDetailPage>(this, "_MasterDetailPage");
             ContentPage_master = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ContentPage>(this, "ContentPage_master");
         }
     }

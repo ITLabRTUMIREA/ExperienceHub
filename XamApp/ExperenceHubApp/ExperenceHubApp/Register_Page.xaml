@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExperenceHubApp.Register_Page"
+             Title="Sing Up"
+             BackgroundColor="Gray">
+    <ContentPage.Content>
+        <StackLayout Spacing="20">
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="UWP" Value="600, 200, 600, 200"/>
+                    <On Platform="Android, IOS" Value="5, 10, 5, 10"/>
+                </OnPlatform>
+            </StackLayout.Padding>
+            <Entry x:Name="First_name" Placeholder="* Your First name"/>
+            <Entry x:Name="Last_name" Placeholder="* Your Last name"/>
+            <Entry x:Name="Email" Placeholder="* Your Email"/>
+            <Entry x:Name="Password" Placeholder="* Password" IsPassword="True"/>
+            <Entry x:Name="Conf_password" Placeholder="* Confirm password" IsPassword="True" TextChanged="Conf_Changed"/>
+            <Label x:Name="Conf_text"/>
+            <StackLayout Orientation="Horizontal"
+                         Margin="0, 30, 0, 0">
+                <Button HorizontalOptions="CenterAndExpand" Text="Sing up" BackgroundColor="Orange" Clicked="Sing_Up_Clicked"/>
+                <Button HorizontalOptions="CenterAndExpand" Text="Cancel" BackgroundColor="Orange" Clicked="Cancel_Clicked"/>
+            </StackLayout>
+            <Label x:Name="Error_label"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

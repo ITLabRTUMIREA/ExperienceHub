@@ -2,19 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExperenceHubApp.Authority"
-             BackgroundColor="Gray">
+             BackgroundColor="Gray"
+             Title="Sing In">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Fill" 
+        <StackLayout x:Name="MainStack"
+                     HorizontalOptions="Fill" 
                      VerticalOptions="CenterAndExpand" 
-                     Margin="400, 300, 400, 400" 
-                     Spacing="8">
+                     Spacing="15">
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="UWP" Value="600, 200, 600, 200"/>
+                    <On Platform="Android, IOS" Value="5, 10, 5, 10"/>
+                </OnPlatform>
+            </StackLayout.Padding>
             <StackLayout>
-                <Entry Placeholder="Email"/>
-                <Entry Placeholder="Password"/>
-                <!--<controls:CheckBox DefaultText="Stay in system" x:Name="SaveCheck"/>-->
+                <Entry x:Name="Login" Placeholder="Email"/>
+                <Entry x:Name="Password" Placeholder="Password" IsPassword="True"/>
             </StackLayout>
-            <Button Text="Sign in" BackgroundColor="Orange" HorizontalOptions="CenterAndExpand"/>
-            <Button Text="Sign up" BackgroundColor="Orange" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Sign in" BackgroundColor="Orange" HorizontalOptions="CenterAndExpand" Clicked="Sing_In_Button"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Sign up" BackgroundColor="Orange" Clicked="Sing_Up_Button"/>
+                <Button Text="Forget Login or Password" BackgroundColor="Orange" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

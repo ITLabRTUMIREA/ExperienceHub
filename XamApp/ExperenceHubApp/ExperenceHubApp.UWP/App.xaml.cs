@@ -30,6 +30,7 @@ namespace ExperenceHubApp.UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            
         }
 
         /// <summary>
@@ -53,8 +54,6 @@ namespace ExperenceHubApp.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
-
-                Xamarin.Forms.DependencyService.Register<ReadAndWrite>();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

@@ -1,1 +1,1 @@
-D:\Projects\ExpirienceHub\Rep_Lab\App\ExperenceHubApp\ExperenceHubApp.UWP\ExperenceHubApp.UWP.csproj;x86
+D:\Projects\ExpirienceHub\XamApp\ExperenceHubApp\ExperenceHubApp.UWP\ExperenceHubApp.UWP.csproj;x86

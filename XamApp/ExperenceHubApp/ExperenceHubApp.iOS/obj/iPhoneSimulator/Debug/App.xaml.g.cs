@@ -13,7 +13,7 @@
 namespace ExperenceHubApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\Projects\\ExpirienceHub\\Rep_Lab\\App\\ExperenceHubApp\\ExperenceHubApp\\App.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\Projects\\ExpirienceHub\\XamApp\\ExperenceHubApp\\ExperenceHubApp\\App.xaml")]
     public partial class App : global::Xamarin.Forms.Application {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

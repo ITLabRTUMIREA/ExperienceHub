@@ -13,8 +13,7 @@
 namespace ExperenceHubApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\Projects\\ExpirienceHub\\Rep_Lab\\App\\ExperenceHubApp\\ExperenceHubApp\\Authority.x" +
-        "aml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\Projects\\ExpirienceHub\\XamApp\\ExperenceHubApp\\ExperenceHubApp\\Authority.xaml")]
     public partial class Authority : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

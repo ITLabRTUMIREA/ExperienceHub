@@ -1,5 +1,6 @@
-System.Runtime
 FormsViewGroup
+Newtonsoft.Json
+System.Runtime
 Xamarin.Android.Arch.Core.Common
 Xamarin.Android.Arch.Lifecycle.Common
 Xamarin.Android.Arch.Lifecycle.Runtime
@@ -24,15 +25,5 @@ Xamarin.Forms.Platform.Android
 Xamarin.Forms.Platform
 Xamarin.Forms.Xaml
 netstandard
-Newtonsoft.Json
-ExifLib
-XLabs.Core
-XLabs.Forms
-XLabs.Forms.Droid
-XLabs.Ioc
-XLabs.Platform
-XLabs.Platform.Droid
-XLabs.Serialization
-System.Resources.ResourceManager
-System.ComponentModel
-System.Reflection.Extensions
+System.Net.Http.Extensions
+System.Net.Http.Primitives

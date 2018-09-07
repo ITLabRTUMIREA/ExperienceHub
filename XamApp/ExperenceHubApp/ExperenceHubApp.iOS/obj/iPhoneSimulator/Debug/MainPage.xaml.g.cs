@@ -13,8 +13,7 @@
 namespace ExperenceHubApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\Projects\\ExpirienceHub\\Rep_Lab\\App\\ExperenceHubApp\\ExperenceHubApp\\MainPage.xa" +
-        "ml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\Projects\\ExpirienceHub\\XamApp\\ExperenceHubApp\\ExperenceHubApp\\MainPage.xaml")]
     public partial class MainPage : global::Xamarin.Forms.MasterDetailPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
