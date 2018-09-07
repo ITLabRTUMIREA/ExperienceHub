@@ -54,7 +54,7 @@ namespace VRTeleportator.Controllers
                 var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
                 return Json(new UserViewModel
                 {
-                    Id = user.Id,
+                    UserId = user.Id,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,

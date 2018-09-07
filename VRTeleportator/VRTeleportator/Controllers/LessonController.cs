@@ -12,7 +12,7 @@ using VRTeleportator.ViewModels;
 namespace VRTeleportator.Controllers
 {
     [Produces("application/json")]
-    [Authorize(AuthenticationSchemes = "Bearer")]
+    //[Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/lesson")]
     public class LessonController : Controller
     {
@@ -35,11 +35,13 @@ namespace VRTeleportator.Controllers
             {
                 Name = model.Name,
                 Price = model.Price,
-                ReleaseDate = model.RecordTime,
+                ReleaseDate = DateTime.UtcNow.Date,
                 Description = model.Description,
                 Creator = $"{result.FirstName} {result.LastName}",
             };
 
+            await dbContext.AddAsync(lesson);
+            await dbContext.SaveChangesAsync();
             return Ok();
         }
     }

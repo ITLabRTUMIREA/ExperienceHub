@@ -26,7 +26,7 @@ namespace VRTeleportator.Controllers
         [Route("upload")]
         public async Task<IActionResult> UploadFile(IFormFile uploadedFile)
         {
-            string path = Path.Combine("Extracts", Path.GetFileName(uploadedFile.FileName));
+            string path = Path.Combine("Lessons", Path.GetFileName(uploadedFile.FileName));
 
             using (var fileStream = new FileStream(Path.Combine(environment.WebRootPath, path), FileMode.Create))
             {

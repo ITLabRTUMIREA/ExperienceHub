@@ -12,5 +12,6 @@ namespace VRTeleportator.Models
         public string LastName { get; set; }
         public float Wallet { get; set; }
         public List<UserLessons> UserLessons { get; set; }
+
     }
 }

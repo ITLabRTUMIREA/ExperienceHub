@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Text;
@@ -27,7 +28,8 @@ namespace VRTeleportator
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ISecretKey, SecretKeyService>();
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 #if DEBUG
             services.AddDbContext<AppDataBase>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDB"),
@@ -49,11 +51,6 @@ namespace VRTeleportator
                 .AddDefaultTokenProviders();
 
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetSection("JwtOptions")["Key"]));
-
-            //services.Configure<SecretKeyService>(config =>
-            //{
-            //    config.SecretKey = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
-            //});
 
             services.AddAuthentication(options =>
             {
