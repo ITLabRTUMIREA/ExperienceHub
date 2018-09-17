@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using VRTeleportator.Exceptions;
 using VRTeleportator.Models;
 using VRTeleportator.ViewModels;
 
@@ -43,11 +44,16 @@ namespace VRTeleportator.Controllers
 
         [HttpGet]
         [Route("{UserId}/get_my_lessons")]
-        public IActionResult GetMyLessons(Guid UserId)
+        public async Task<IActionResult> GetMyLessons(Guid UserId)
         {
+            if (await userManager.FindByIdAsync(UserId.ToString()) == null)
+            {
+                throw new ServiceException(Exceptions.StatusCode.NotFound);
+            }
+
             List<Lesson> lessonsView = new List<Lesson>();
             var lessons = dbContext.Lessons.Include(u => u.UserLessons).ThenInclude(u => u.User).ToList();
-            var result = userManager.FindByIdAsync(UserId.ToString()).GetAwaiter().GetResult();
+            var result = await userManager.FindByIdAsync(UserId.ToString());
 
             foreach (var lesson in lessons)
             {
@@ -60,6 +66,8 @@ namespace VRTeleportator.Controllers
             return Json(lessonsView.Select(t => new
             {
                 t.Name,
+                t.Creator,
+                t.Description,
                 t.LessonId,
                 t.Path,
                 t.Picture,
@@ -91,30 +99,29 @@ namespace VRTeleportator.Controllers
         [Route("wallet")]
         public async Task<IActionResult> ReplanishWallet([FromBody] WalletReplanishViewModel model)
         {
-            var result = dbContext.Users.FirstOrDefault(u => u.Id == model.UserId).Wallet = model.Wallet;
+            var result = dbContext.Users.FirstOrDefault(u => u.Id == model.UserId).Wallet += model.Wallet;
             await dbContext.SaveChangesAsync();
 
-            return Ok();
+            return Ok(dbContext.Users.FirstOrDefault(u => u.Id == model.UserId).Wallet);
         }
 
-        [HttpPut]
-        [Route("lessons/purchase")]
-        public async Task<IActionResult> PurchaseLesson([FromBody] PurchaseViewModel model)
+        [HttpPost]
+        [Route("{UserId}/lessons/purchase")]
+        public async Task<IActionResult> PurchaseLesson([FromBody] PurchaseViewModel model, Guid UserId)
         {
-            var result = await dbContext.Users.FindAsync(model.UserId);
+            var result = await dbContext.Users.FindAsync(UserId);
 
             if (result.UserLessons == null)
             {
                 result.UserLessons = new List<UserLessons>();
             }
 
-            result.UserLessons.Add(new UserLessons { UserId = model.UserId, LessonId = model.LessonId });
+            result.UserLessons.Add(new UserLessons { UserId = UserId, LessonId = model.LessonId });
             result.Wallet -= model.Price;
-
 
             await dbContext.SaveChangesAsync();
 
-            return Ok();
+            return Ok(result.Wallet);
         }
 
         [HttpPut]

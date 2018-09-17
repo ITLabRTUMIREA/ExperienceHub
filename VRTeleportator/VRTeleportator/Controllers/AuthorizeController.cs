@@ -55,6 +55,7 @@ namespace VRTeleportator.Controllers
                 return Json(new UserViewModel
                 {
                     UserId = user.Id,
+                    Wallet = user.Wallet,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,

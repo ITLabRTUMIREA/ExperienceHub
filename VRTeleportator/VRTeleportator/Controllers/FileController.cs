@@ -5,6 +5,7 @@ using System.IO.Compression;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using VRTeleportator.Models;
+using System;
 
 namespace VRTeleportator.Controllers
 {
@@ -23,28 +24,33 @@ namespace VRTeleportator.Controllers
 
         [HttpPost]
         [RequestSizeLimit(100000000000)]
-        [Route("upload")]
-        public async Task<IActionResult> UploadFile(IFormFile uploadedFile)
+        [Route("{LessonId}/upload")]
+        public async Task<IActionResult> UploadFile(IFormFile uploadedFile, Guid LessonId)
         {
-            string path = Path.Combine("Lessons", Path.GetFileName(uploadedFile.FileName));
+            var result = context.Lessons.Find(LessonId);
+            var path = Path.Combine(result.Path, Path.GetExtension(uploadedFile.Name));
 
             using (var fileStream = new FileStream(Path.Combine(environment.WebRootPath, path), FileMode.Create))
             {
                 await uploadedFile.CopyToAsync(fileStream);
             }
 
-            FileModel file = new FileModel
-            {
-                FileName = uploadedFile.FileName,
-                FilePath = path
-            };
+            ZipFile.ExtractToDirectory(path, Path.Combine(environment.WebRootPath, $@"Lessons\{result.Name}"));
+
+            return Ok();
+
+            //string path = Path.Combine("Lessons", Path.GetFileName(uploadedFile.FileName));
+
+
+
+            //FileModel file = new FileModel
+            //{
+            //    FileName = uploadedFile.FileName,
+            //    FilePath = path
+            //};
 
             //await context.Files.AddAsync(file);
             //await context.SaveChangesAsync();
-
-            ZipFile.ExtractToDirectory(Path.Combine(environment.WebRootPath, file.FilePath),
-                Path.Combine(environment.WebRootPath, "Extracts/kek"));
-            return Ok();
         }
 
         [HttpGet]
@@ -62,11 +68,11 @@ namespace VRTeleportator.Controllers
                 .ToString());
         }
 
-        [HttpDelete]
-        [Route("delete/{folder}")]
-        public async Task<IActionResult> DeleteDirectory(string folder)
-        {
-            return Ok();
-        }
+        //[HttpDelete]
+        //[Route("delete/{folder}")]
+        //public async Task<IActionResult> DeleteDirectory(string folder)
+        //{
+        //    return Ok();
+        //}
     }
 }

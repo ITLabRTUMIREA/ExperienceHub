@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,13 +18,15 @@ namespace VRTeleportator.Controllers
     [Route("api/lesson")]
     public class LessonController : Controller
     {
-        private readonly Microsoft.AspNetCore.Identity.UserManager<User> userManager;
+        private readonly UserManager<User> userManager;
         private readonly AppDataBase dbContext;
+        private readonly IHostingEnvironment environment;
 
-        public LessonController(UserManager<User> userManager, AppDataBase dbContext)
+        public LessonController(UserManager<User> userManager, AppDataBase dbContext, IHostingEnvironment environment)
         {
             this.userManager = userManager;
             this.dbContext = dbContext;
+            this.environment = environment;
         }
 
         [HttpPost]
@@ -34,6 +38,7 @@ namespace VRTeleportator.Controllers
             Lesson lesson = new Lesson
             {
                 Name = model.Name,
+                Path = Path.Combine($@"Lessons\{model.Name}.zip"),
                 Price = model.Price,
                 ReleaseDate = DateTime.UtcNow.Date,
                 Description = model.Description,
