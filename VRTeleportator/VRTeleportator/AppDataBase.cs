@@ -17,10 +17,5 @@ namespace VRTeleportator
         public DbSet<FileModel> Files { get; set; }
         public DbSet<User> UserAccounts { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
-
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    builder.Entity<UserLessons>().HasKey(t => new { t.UserId, t.LessonId });
-        //}
     }
 }

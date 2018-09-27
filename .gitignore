@@ -3,3 +3,7 @@
 ################################################################################
 
 /VRTeleportator/VRTeleportator/appsettings.Secret.json
+
+VRTeleportator/\.vs/
+
+VRTeleportator/VRTeleportator/obj/
