@@ -48,7 +48,7 @@ namespace VRTeleportator.Controllers
         {
             if (await userManager.FindByIdAsync(UserId.ToString()) == null)
             {
-                throw new ServiceException(Exceptions.StatusCode.NotFound);
+                //throw new ServiceException(Exceptions.StatusCode.NotFound);
             }
 
             List<Lesson> lessonsView = new List<Lesson>();
