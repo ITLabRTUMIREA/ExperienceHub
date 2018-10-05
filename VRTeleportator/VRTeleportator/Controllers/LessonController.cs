@@ -38,7 +38,6 @@ namespace VRTeleportator.Controllers
             Lesson lesson = new Lesson
             {
                 Name = model.Name,
-                Path = Path.Combine($@"Lessons\{model.Name}.zip"),
                 Price = model.Price,
                 ReleaseDate = DateTime.UtcNow.Date,
                 Description = model.Description,
@@ -47,7 +46,7 @@ namespace VRTeleportator.Controllers
 
             await dbContext.AddAsync(lesson);
             await dbContext.SaveChangesAsync();
-            return Ok();
+            return Json(lesson.LessonId);
         }
     }
 }

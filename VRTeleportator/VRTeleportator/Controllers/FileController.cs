@@ -28,51 +28,16 @@ namespace VRTeleportator.Controllers
         public async Task<IActionResult> UploadFile(IFormFile uploadedFile, Guid LessonId)
         {
             var result = context.Lessons.Find(LessonId);
-            var path = Path.Combine(result.Path, Path.GetExtension(uploadedFile.Name));
+            var path = uploadedFile.FileName;
 
             using (var fileStream = new FileStream(Path.Combine(environment.WebRootPath, path), FileMode.Create))
             {
                 await uploadedFile.CopyToAsync(fileStream);
             }
 
-            ZipFile.ExtractToDirectory(path, Path.Combine(environment.WebRootPath, $@"Lessons\{result.Name}"));
-
+            result.Path = path;
+            await context.SaveChangesAsync();
             return Ok();
-
-            //string path = Path.Combine("Lessons", Path.GetFileName(uploadedFile.FileName));
-
-
-
-            //FileModel file = new FileModel
-            //{
-            //    FileName = uploadedFile.FileName,
-            //    FilePath = path
-            //};
-
-            //await context.Files.AddAsync(file);
-            //await context.SaveChangesAsync();
         }
-
-        [HttpGet]
-        [Route("getinfo/{folder}")]
-        public IActionResult GetNumber(string folder)
-        {
-            if (!Directory.Exists(Path.Combine(environment.WebRootPath, $@"Extracts/{folder}")))
-            {
-                return NotFound("Выбранный Вами путь не существует");
-            }
-
-            return Json(new DirectoryInfo(Path.Combine(environment.WebRootPath, $@"Extracts/{folder}"))
-                .GetFiles()
-                .Length
-                .ToString());
-        }
-
-        //[HttpDelete]
-        //[Route("delete/{folder}")]
-        //public async Task<IActionResult> DeleteDirectory(string folder)
-        //{
-        //    return Ok();
-        //}
     }
 }

@@ -14,8 +14,9 @@ namespace VRTeleportator
         public AppDataBase(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<FileModel> Files { get; set; }
         public DbSet<User> UserAccounts { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
     }
 }

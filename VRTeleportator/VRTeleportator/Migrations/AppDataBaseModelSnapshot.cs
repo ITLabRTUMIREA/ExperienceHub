@@ -125,6 +125,18 @@ namespace VRTeleportator.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("VRTeleportator.Models.Category", b =>
+                {
+                    b.Property<Guid>("CategoryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CategoryName");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("VRTeleportator.Models.FileModel", b =>
                 {
                     b.Property<Guid>("Id")
@@ -163,6 +175,22 @@ namespace VRTeleportator.Migrations
                     b.HasKey("LessonId");
 
                     b.ToTable("Lessons");
+                });
+
+            modelBuilder.Entity("VRTeleportator.Models.SubCategory", b =>
+                {
+                    b.Property<Guid>("SubCategoryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CategoryId");
+
+                    b.Property<string>("SubCategoryName");
+
+                    b.HasKey("SubCategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("VRTeleportator.Models.User", b =>
@@ -282,6 +310,14 @@ namespace VRTeleportator.Migrations
                     b.HasOne("VRTeleportator.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("VRTeleportator.Models.SubCategory", b =>
+                {
+                    b.HasOne("VRTeleportator.Models.Category")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
