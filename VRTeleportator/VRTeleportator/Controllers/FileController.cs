@@ -23,7 +23,7 @@ namespace VRTeleportator.Controllers
         }
 
         [HttpPost]
-        [RequestSizeLimit(100000000000)]
+        [RequestSizeLimit(999999999999999999)]
         [Route("{LessonId}/upload")]
         public async Task<IActionResult> UploadFile(IFormFile uploadedFile, Guid LessonId)
         {

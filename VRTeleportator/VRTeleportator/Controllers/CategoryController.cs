@@ -35,7 +35,7 @@ namespace VRTeleportator.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost] 
         [Route("{CategoryId}/sub/add")]
         public async Task<IActionResult> AddSubCategory([FromBody] CreateSubCategoryViewModel createRequest, Guid CategoryId)
         {
@@ -56,9 +56,9 @@ namespace VRTeleportator.Controllers
         public IActionResult GetCategories()
         {
             Dictionary<string, List<string>> pairs = new Dictionary<string, List<string>>();
-
             var categories = dbContext.Categories.Include(s => s.SubCategories).ToList();
-            var res = categories.ToDictionary(x => x.CategoryName, x => x.SubCategories);
+          
+            var res = categories.ToDictionary(x => x.CategoryName, x => x.SubCategories.Select(s => s.SubCategoryName).ToList());
             return Json(res);
         }
     }

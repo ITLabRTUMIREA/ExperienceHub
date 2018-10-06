@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -76,7 +77,7 @@ namespace VRTeleportator
                   };
               });
 
-
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,8 +90,14 @@ namespace VRTeleportator
             app.UseAuthentication();
             app.UseStaticFiles(new StaticFileOptions
             {
-                ServeUnknownFileTypes = true
+                ServeUnknownFileTypes = true,
+                
             });
+            app.UseCors(config =>
+                config.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    .AllowCredentials());
             app.UseMvc();
         }
     }
